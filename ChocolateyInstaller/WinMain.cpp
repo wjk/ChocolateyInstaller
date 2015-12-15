@@ -107,11 +107,12 @@ int WINAPI _tWinMain(HINSTANCE hInst, HINSTANCE /* hPrevInstance */, LPTSTR cmdL
 
 	CString cmd = outputDir + "\\ChocolateyInstaller.Wizard.exe";
 	STARTUPINFO si; PROCESS_INFORMATION pi;
+	ZeroMemory(&si, sizeof(si));
 	si.cb = sizeof(STARTUPINFO);
 	si.wShowWindow = SW_SHOW;
 	si.dwFlags = STARTF_USESHOWWINDOW;
 
-	if (!CreateProcess(cmd.GetString(), _T(""), nullptr, nullptr, false, 0, nullptr, nullptr, &si, &pi)) {
+	if (!CreateProcess(cmd.GetString(), _T(""), nullptr, nullptr, false, 0, nullptr, outputDir.GetString(), &si, &pi)) {
 		CString mainInstruction; mainInstruction.LoadStringW(hInstance, IDS_EXECFAIL);
 		ShowFailureDialog(mainInstruction, _T(""));
 		return -1;
