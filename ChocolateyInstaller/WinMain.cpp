@@ -30,7 +30,7 @@ static void ShowFailureDialog(const CString& mainInstruction, const CString& con
 
 static bool IsDotNetFrameworkInstalled(void) {
 	CRegKey key;
-	if (key.Open(HKEY_LOCAL_MACHINE, _T("SOFTWARE\\Microsoft\\NET Framework Setup\\NDP\\v4\\Full")) != ERROR_SUCCESS) return false;
+	if (key.Open(HKEY_LOCAL_MACHINE, _T("SOFTWARE\\Microsoft\\NET Framework Setup\\NDP\\v4\\Full"), GENERIC_READ) != ERROR_SUCCESS) return false;
 
 	DWORD dwReleaseInfo;
 	if (key.QueryDWORDValue(_T("Release"), dwReleaseInfo) != ERROR_SUCCESS) return false;
@@ -83,6 +83,7 @@ static bool ExtractZip(WORD zipResourceId, const CString& directory) {
 }
 
 #define REENTRANCY_MUTEX_NAME _T("Local\\Chocolatey Installer Reentrancy Mutex")
+#define NDP_SETUP_URL _T("http://go.microsoft.com/fwlink/?LinkId=397674")
 
 int WINAPI _tWinMain(HINSTANCE hInst, HINSTANCE /* hPrevInstance */, LPTSTR cmdLine, INT nCmdShow) {
 	hInstance = hInst;
@@ -99,6 +100,34 @@ int WINAPI _tWinMain(HINSTANCE hInst, HINSTANCE /* hPrevInstance */, LPTSTR cmdL
 	}
 
 	hMutex = ::CreateMutex(nullptr, true, REENTRANCY_MUTEX_NAME);
+
+	if (!IsDotNetFrameworkInstalled()) {
+		CString mainInstruction; mainInstruction.LoadStringW(hInstance, IDS_NONDP);
+		CString content; content.LoadStringW(hInstance, IDS_NONDP_DESC);
+		CString download; download.LoadStringW(hInstance, IDS_NONDP_DOWNLOAD);
+		CString cancel; cancel.LoadStringW(hInstance, IDS_NONDP_CANCEL);
+
+		TASKDIALOG_BUTTON btns[2];
+		ZeroMemory(btns, sizeof(btns));
+		btns[0].nButtonID = 0;
+		btns[0].pszButtonText = download.GetString();
+		btns[1].nButtonID = 1;
+		btns[1].pszButtonText = cancel.GetString();
+
+		CTaskDialog td;
+		td.SetMainInstructionText(mainInstruction);
+		td.SetContentText(content);
+		td.SetWindowTitle(_T("Chocolatey Installer"));
+		td.SetButtons(btns, 2, 0);
+		td.SetMainIcon(TD_INFORMATION_ICON);
+		td.ModifyFlags(0, TDF_ALLOW_DIALOG_CANCELLATION);
+
+		int clickedButton;
+		td.DoModal(HWND_DESKTOP, &clickedButton);
+		if (clickedButton == 0) ::ShellExecute(nullptr, _T("open"), NDP_SETUP_URL, nullptr, nullptr, SW_SHOWDEFAULT);
+
+		return 0;
+	}
 
 	TCHAR targetDir[MAX_PATH];
 	if (!::GetEnvironmentVariable(_T("TEMP"), targetDir, MAX_PATH)) {
