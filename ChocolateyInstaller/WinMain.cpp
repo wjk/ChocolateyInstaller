@@ -53,8 +53,14 @@ static bool ExtractZip(WORD zipResourceId, const CString& directory) {
 
 		ZRESULT zr_inner = UnzipItem(zipFile, index, zipEntry.name);
 		if (zr_inner != ZR_OK) {
-			result = false;
-			break;
+			// Sometimes ZR_FLATE can be returned incorrectly if the file being
+			// decompressed is of zero length. (UnzipItem() cannot differentiate
+			// between a genuine zero-size read and an error condition.) Only fail
+			// if the size decompressed size is not actually zero.
+			if (zr_inner == ZR_FLATE && zipEntry.unc_size != 0) {
+				result = false;
+				break;
+			}
 		}
 
 		index++;
