@@ -18,9 +18,5 @@
     <None Include="psakeProject.ps1">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="powershell-zip\powershell-zip.psm1" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="powershell-zip\LICENSE.txt" />
   </ItemGroup>
 </Project>
