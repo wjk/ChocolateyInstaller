@@ -89,6 +89,7 @@ namespace ChocolateyInstaller.Wizard
                 td.MainInstruction = "The selected directory already contains files.";
                 td.Content = "This program will not install Chocolatey into a folder that contains files. Please choose another location.";
                 td.CommonButtons = VistaTaskDialogCommonButtons.Ok;
+                td.AllowDialogCancellation = true;
                 td.Show(this);
                 e.Cancel = true;
             }
