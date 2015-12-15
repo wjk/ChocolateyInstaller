@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Diagnostics;
 using System.Linq;
-using System.Runtime.InteropServices;
+using ChocolateyInstaller.VersionHelpers;
 
 namespace ChocolateyInstaller.ElevationUtility
 {
@@ -15,6 +15,51 @@ namespace ChocolateyInstaller.ElevationUtility
         {
             // This class is not meant to be instantiated.
             throw new NotSupportedException();
+        }
+
+
+        /// <summary>
+        /// Determines if the current process is running under administrator privileges.
+        /// </summary>
+        /// <exception cref="PlatformNotSupportedException">
+        /// Thrown if the current process is not running on Windows Vista or later.
+        /// </exception>
+        /// <exception cref="System.ComponentModel.Win32Exception">
+        /// Thrown if a native operation failed.
+        /// </exception>
+        public static bool IsProcessElevated
+        {
+            get
+            {
+                if (!WindowsVersion.IsWindowsVista())
+                {
+                    // Elevation is only supported on Windows Vista and later.
+                    throw new PlatformNotSupportedException();
+                }
+
+                IntPtr tokenHandle;
+                if (!NativeMethods.OpenProcessToken(NativeMethods.GetCurrentProcess(), TOKEN_ACCESS_RIGHTS.TOKEN_QUERY, out tokenHandle))
+                {
+                    throw new System.ComponentModel.Win32Exception("OpenProcessToken failed", new System.ComponentModel.Win32Exception());
+                }
+
+                try
+                {
+                    TOKEN_ELEVATION_TYPE elevationType;
+                    uint dontCare;
+
+                    if (!NativeMethods.GetTokenInformation(tokenHandle, TOKEN_INFORMATION_CLASS.TokenElevationType, out elevationType, Convert.ToUInt32(sizeof(TOKEN_ELEVATION_TYPE)), out dontCare))
+                    {
+                        throw new System.ComponentModel.Win32Exception("GetTokenInformation failed", new System.ComponentModel.Win32Exception());
+                    }
+
+                    return elevationType == TOKEN_ELEVATION_TYPE.TokenElevationTypeFull;
+                }
+                finally
+                {
+                    NativeMethods.CloseHandle(tokenHandle);
+                }
+            }
         }
 
         /// <summary>
@@ -31,46 +76,16 @@ namespace ChocolateyInstaller.ElevationUtility
         /// <returns>
         /// The exit code returned by the executed program.
         /// </returns>
-        /// <exception cref="System.ComponentModel.Win32Exception">
-        /// Thrown if a native operation failed.
-        /// </exception>
         public static int ExecuteProcessElevated(string exePath, IList<string> argv)
         {
             string argString = string.Join(" ", argv.Select(x => $"\"{x}\""));
 
-            if (!WindowsVersion.IsWindowsVista())
-            {
-                System.Diagnostics.Process process = System.Diagnostics.Process.Start(exePath, argString);
-                process.WaitForExit();
-                return process.ExitCode;
-            }
-
-            int exitCode = 0;
-            SHELLEXECUTEINFOW shellExecuteInfo = new SHELLEXECUTEINFOW();
-            shellExecuteInfo.cbSize = Marshal.SizeOf<SHELLEXECUTEINFOW>();
-            shellExecuteInfo.fMask = SHELLEXECUTEINFOW.SEE_MASK_NOCLOSEPROCESS;
-            shellExecuteInfo.lpVerb = "runas";
-            shellExecuteInfo.lpFile = exePath;
-            shellExecuteInfo.lpParameters = argString;
-            shellExecuteInfo.lpDirectory = Directory.GetCurrentDirectory();
-
-            bool launchOK = NativeMethods.ShellExecuteExW(ref shellExecuteInfo);
-            if (!launchOK) throw new System.ComponentModel.Win32Exception();
-
-            if (shellExecuteInfo.hProcess == IntPtr.Zero) throw new System.ComponentModel.Win32Exception("SHELLEXECUTEINFOW.hProcess is NULL", new System.ComponentModel.Win32Exception());
-            
-            const int STILL_ALIVE = 259;
-            exitCode = STILL_ALIVE;
-
-            do
-            {
-                NativeMethods.WaitForSingleObject(shellExecuteInfo.hProcess);
-                bool success = NativeMethods.GetExitCodeProcess(shellExecuteInfo.hProcess, ref exitCode);
-                if (!success) throw new System.ComponentModel.Win32Exception();
-            } while (exitCode == STILL_ALIVE);
-
-            NativeMethods.CloseHandle(shellExecuteInfo.hProcess);
-            return exitCode;
+            ProcessStartInfo processInfo = new ProcessStartInfo(exePath, argString);
+            processInfo.UseShellExecute = true;
+            if (WindowsVersion.IsWindowsVista()) processInfo.Verb = "runas";
+            Process child = Process.Start(processInfo);
+            child.WaitForExit();
+            return child.ExitCode;
         }
     }
 }

@@ -42,13 +42,16 @@
   <ItemGroup>
     <Compile Include="ElevationUtility.cs" />
     <Compile Include="NativeMethods.cs" />
-    <Compile Include="OSVERSIONINFOEX.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SHELLEXECUTEINFO.cs" />
     <Compile Include="TOKEN_ACCESS_RIGHTS.cs" />
     <Compile Include="TOKEN_ELEVATION_TYPE.cs" />
     <Compile Include="TOKEN_INFORMATION_CLASS.cs" />
-    <Compile Include="WindowsVersion.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChocolateyInstaller.VersionHelpers\ChocolateyInstaller.VersionHelpers.csproj">
+      <Project>{8517761d-8f0a-4d97-b823-f293b887024b}</Project>
+      <Name>ChocolateyInstaller.VersionHelpers</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
