@@ -3,6 +3,8 @@
 #pragma warning(push)
 #pragma warning(disable: 4302 4838)
 #include <atlbase.h>
+#include <atlfile.h>
+#include <atlcoll.h>
 #include <atlstr.h>
 #include <atlwin.h>
 #include <atlapp.h>
@@ -12,15 +14,106 @@
 
 #include "unzip.h"
 #include "resource.h"
+#include <shellapi.h>
 
-int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE /* hPrevInstance */, LPTSTR cmdLine, INT nCmdShow) {
+static HINSTANCE hInstance;
+static void ShowFailureDialog(const CString& mainInstruction, const CString& content = _T("")) {
 	CTaskDialog td;
-	td.SetMainInstructionText(_T("This application is not yet implemented."));
+	td.SetMainInstructionText(mainInstruction);
+	if (content.GetLength() != 0) td.SetContentText(content);
 	td.SetWindowTitle(_T("Chocolatey Installer"));
 	td.SetCommonButtons(TDCBF_CLOSE_BUTTON);
 	td.SetMainIcon(TD_ERROR_ICON);
 	td.ModifyFlags(0, TDF_ALLOW_DIALOG_CANCELLATION);
 	td.DoModal(HWND_DESKTOP);
+}
 
-	return 1;
+static bool ExtractZip(WORD zipResourceId, const CString& directory) {
+	CResource zipResource;
+	if (!zipResource.Load(_T("ZIPFILE"), zipResourceId)) return false;
+
+	unsigned int dwSize = zipResource.GetSize();
+	if (dwSize < 0x100) return false;
+
+	HZIP zipFile = OpenZip(zipResource.Lock(), dwSize, NULL);
+	SetUnzipBaseDir(zipFile, directory.GetString());
+
+	ZRESULT zr; int index = 0; bool result = true;
+	do {
+		ZIPENTRY zipEntry;
+
+		zr = GetZipItem(zipFile, index, &zipEntry);
+		if (zr != ZR_MORE && zr != ZR_OK) {
+			result = false;
+			break;
+		}
+
+		CString targetFile = directory + "\\" + zipEntry.name;
+		DeleteFile(targetFile.GetString());
+
+		ZRESULT zr_inner = UnzipItem(zipFile, index, zipEntry.name);
+		if (zr_inner != ZR_OK) {
+			result = false;
+			break;
+		}
+
+		index++;
+	} while (zr == ZR_MORE || zr == ZR_OK);
+
+	CloseZip(zipFile);
+	zipResource.Release();
+
+	return result;
+}
+
+int WINAPI _tWinMain(HINSTANCE hInst, HINSTANCE /* hPrevInstance */, LPTSTR cmdLine, INT nCmdShow) {
+	hInstance = hInst;
+
+	TCHAR targetDir[MAX_PATH];
+	if (!::GetEnvironmentVariable(_T("TEMP"), targetDir, MAX_PATH)) {
+		CString mainInstruction; mainInstruction.LoadStringW(hInstance, IDS_CANTLAUNCH);
+		CString content; content.LoadStringW(hInstance, IDS_NOTEMPDIR);
+		ShowFailureDialog(mainInstruction, content);
+		return 1;
+	}
+
+	_tcscat_s(targetDir, _T("\\ChocolateyInstaller"));
+	if (!::CreateDirectory(targetDir, nullptr) && ::GetLastError() != ERROR_ALREADY_EXISTS) {
+		CString mainInstruction; mainInstruction.LoadStringW(hInstance, IDS_CANTLAUNCH);
+		CString content; content.LoadStringW(hInstance, IDS_TEMPDIRWRITEFAIL);
+		ShowFailureDialog(mainInstruction, content);
+		return 1;
+	}
+
+	CString outputDir = targetDir;
+	const WORD IDR_CHOCOLATEY_NUPKG = 1, IDR_WIZARD_ZIP = 2;
+	if (!ExtractZip(IDR_CHOCOLATEY_NUPKG, outputDir + "\\choco_nupkg")) {
+		CString mainInstruction; mainInstruction.LoadStringW(hInstance, IDS_CANTLAUNCH);
+		CString content; content.LoadStringW(hInstance, IDS_EXTRACTFAIL);
+		ShowFailureDialog(mainInstruction, content);
+		return 1;
+	}
+
+	if (!ExtractZip(IDR_WIZARD_ZIP, outputDir)) {
+		CString mainInstruction; mainInstruction.LoadStringW(hInstance, IDS_CANTLAUNCH);
+		CString content; content.LoadStringW(hInstance, IDS_EXTRACTFAIL);
+		ShowFailureDialog(mainInstruction, content);
+		return 1;
+	}
+
+	CString cmd = outputDir + "\\ChocolateyInstaller.Wizard.exe";
+	STARTUPINFO si; PROCESS_INFORMATION pi;
+	si.cb = sizeof(STARTUPINFO);
+	si.wShowWindow = SW_SHOW;
+	si.dwFlags = STARTF_USESHOWWINDOW;
+
+	if (!CreateProcess(cmd.GetString(), _T(""), nullptr, nullptr, false, 0, nullptr, nullptr, &si, &pi)) {
+		CString mainInstruction; mainInstruction.LoadStringW(hInstance, IDS_CANTLAUNCH);
+		CString content; content.LoadStringW(hInstance, IDS_EXECFAIL);
+		ShowFailureDialog(mainInstruction, content);
+		return -1;
+	}
+
+	WaitForSingleObject(pi.hProcess, INFINITE);
+	return 0;
 }
