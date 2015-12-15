@@ -69,8 +69,23 @@ static bool ExtractZip(WORD zipResourceId, const CString& directory) {
 	return result;
 }
 
+#define REENTRANCY_MUTEX_NAME _T("Local\\Chocolatey Installer Reentrancy Mutex")
+
 int WINAPI _tWinMain(HINSTANCE hInst, HINSTANCE /* hPrevInstance */, LPTSTR cmdLine, INT nCmdShow) {
 	hInstance = hInst;
+
+	HANDLE hMutex = ::OpenMutex(SYNCHRONIZE, false, REENTRANCY_MUTEX_NAME);
+	bool alreadyExists = (hMutex == NULL && GetLastError() == ERROR_FILE_NOT_FOUND);
+
+	if (!alreadyExists) {
+		CString mainInstruction; mainInstruction.LoadStringW(hInstance, IDS_REENTRANCY);
+		CString content; content.LoadStringW(hInstance, IDS_REENTRANCY_DESC);
+		ShowFailureDialog(mainInstruction, content);
+		CloseHandle(hMutex);
+		return 1;
+	}
+
+	hMutex = ::CreateMutex(nullptr, true, REENTRANCY_MUTEX_NAME);
 
 	TCHAR targetDir[MAX_PATH];
 	if (!::GetEnvironmentVariable(_T("TEMP"), targetDir, MAX_PATH)) {
@@ -116,5 +131,6 @@ int WINAPI _tWinMain(HINSTANCE hInst, HINSTANCE /* hPrevInstance */, LPTSTR cmdL
 	}
 
 	WaitForSingleObject(pi.hProcess, INFINITE);
+	CloseHandle(hMutex);
 	return 0;
 }
