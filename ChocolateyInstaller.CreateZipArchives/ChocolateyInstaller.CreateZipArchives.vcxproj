@@ -71,15 +71,75 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <NMakeBuildCommandLine>set _MSB_PROPERTIES=ProjectDir;SolutionDir;Configuration
+set ProjectDir=$(ProjectDir)
+set SolutionDir=$(SolutionDir)
+set Configuration=$(Configuration)
+powershell -executionpolicy bypass -command "&amp;" "'$(ProjectDir)psakeInvoke.ps1'" build</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>set _MSB_PROPERTIES=ProjectDir;SolutionDir;Configuration
+set ProjectDir=$(ProjectDir)
+set SolutionDir=$(SolutionDir)
+set Configuration=$(Configuration)
+powershell -executionpolicy bypass -command "&amp;" "'$(ProjectDir)psakeInvoke.ps1'" clean,build</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>set _MSB_PROPERTIES=ProjectDir;SolutionDir;Configuration
+set ProjectDir=$(ProjectDir)
+set SolutionDir=$(SolutionDir)
+set Configuration=$(Configuration)
+powershell -executionpolicy bypass "&amp;" "'$(ProjectDir)psakeInvoke.ps1'" clean</NMakeCleanCommandLine>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <NMakeBuildCommandLine>set _MSB_PROPERTIES=ProjectDir;SolutionDir;Configuration
+set ProjectDir=$(ProjectDir)
+set SolutionDir=$(SolutionDir)
+set Configuration=$(Configuration)
+powershell -executionpolicy bypass "&amp;" "'$(ProjectDir)psakeInvoke.ps1'" build</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>set _MSB_PROPERTIES=ProjectDir;SolutionDir;Configuration
+set ProjectDir=$(ProjectDir)
+set SolutionDir=$(SolutionDir)
+set Configuration=$(Configuration)
+powershell -executionpolicy bypass "&amp;" "'$(ProjectDir)psakeInvoke.ps1'" clean,build</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>set _MSB_PROPERTIES=ProjectDir;SolutionDir;Configuration
+set ProjectDir=$(ProjectDir)
+set SolutionDir=$(SolutionDir)
+set Configuration=$(Configuration)
+powershell -executionpolicy bypass "&amp;" "'$(ProjectDir)psakeInvoke.ps1'" clean</NMakeCleanCommandLine>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <NMakeBuildCommandLine>set _MSB_PROPERTIES=ProjectDir;SolutionDir;Configuration
+set ProjectDir=$(ProjectDir)
+set SolutionDir=$(SolutionDir)
+set Configuration=$(Configuration)
+powershell -executionpolicy bypass "&amp;" "'$(ProjectDir)psakeInvoke.ps1'" build</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>set _MSB_PROPERTIES=ProjectDir;SolutionDir;Configuration
+set ProjectDir=$(ProjectDir)
+set SolutionDir=$(SolutionDir)
+set Configuration=$(Configuration)
+powershell -executionpolicy bypass "&amp;" "'$(ProjectDir)psakeInvoke.ps1'" clean,build</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>set _MSB_PROPERTIES=ProjectDir;SolutionDir;Configuration
+set ProjectDir=$(ProjectDir)
+set SolutionDir=$(SolutionDir)
+set Configuration=$(Configuration)
+powershell -executionpolicy bypass "&amp;" "'$(ProjectDir)psakeInvoke.ps1'" clean</NMakeCleanCommandLine>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <NMakeBuildCommandLine>set _MSB_PROPERTIES=ProjectDir;SolutionDir;Configuration
+set ProjectDir=$(ProjectDir)
+set SolutionDir=$(SolutionDir)
+set Configuration=$(Configuration)
+powershell -executionpolicy bypass "&amp;" "'$(ProjectDir)psakeInvoke.ps1'" build</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>set _MSB_PROPERTIES=ProjectDir;SolutionDir;Configuration
+set ProjectDir=$(ProjectDir)
+set SolutionDir=$(SolutionDir)
+set Configuration=$(Configuration)
+powershell -executionpolicy bypass "&amp;" "'$(ProjectDir)psakeInvoke.ps1'" clean,build</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>set _MSB_PROPERTIES=ProjectDir;SolutionDir;Configuration
+set ProjectDir=$(ProjectDir)
+set SolutionDir=$(SolutionDir)
+set Configuration=$(Configuration)
+powershell -executionpolicy bypass "&amp;" "'$(ProjectDir)psakeInvoke.ps1'" clean</NMakeCleanCommandLine>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -142,7 +202,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="powershell-zip\powershell-zip.psm1" />
     <None Include="psakeProject.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="powershell-zip\LICENSE.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
