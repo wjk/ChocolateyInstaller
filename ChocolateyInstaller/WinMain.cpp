@@ -71,16 +71,16 @@ int WINAPI _tWinMain(HINSTANCE hInst, HINSTANCE /* hPrevInstance */, LPTSTR cmdL
 
 	TCHAR targetDir[MAX_PATH];
 	if (!::GetEnvironmentVariable(_T("TEMP"), targetDir, MAX_PATH)) {
-		CString mainInstruction; mainInstruction.LoadStringW(hInstance, IDS_CANTLAUNCH);
-		CString content; content.LoadStringW(hInstance, IDS_NOTEMPDIR);
+		CString mainInstruction; mainInstruction.LoadStringW(hInstance, IDS_NOTEMPDIR);
+		CString content; content.LoadStringW(hInstance, IDS_NOTEMPDIR_DESC);
 		ShowFailureDialog(mainInstruction, content);
 		return 1;
 	}
 
 	_tcscat_s(targetDir, _T("\\ChocolateyInstaller"));
 	if (!::CreateDirectory(targetDir, nullptr) && ::GetLastError() != ERROR_ALREADY_EXISTS) {
-		CString mainInstruction; mainInstruction.LoadStringW(hInstance, IDS_CANTLAUNCH);
-		CString content; content.LoadStringW(hInstance, IDS_TEMPDIRWRITEFAIL);
+		CString mainInstruction; mainInstruction.LoadStringW(hInstance, IDS_TEMPDIRWRITEFAIL);
+		CString content; content.LoadStringW(hInstance, IDS_TEMPDIRWRITEFAIL_DESC);
 		ShowFailureDialog(mainInstruction, content);
 		return 1;
 	}
@@ -88,16 +88,14 @@ int WINAPI _tWinMain(HINSTANCE hInst, HINSTANCE /* hPrevInstance */, LPTSTR cmdL
 	CString outputDir = targetDir;
 	const WORD IDR_CHOCOLATEY_NUPKG = 1, IDR_WIZARD_ZIP = 2;
 	if (!ExtractZip(IDR_CHOCOLATEY_NUPKG, outputDir + "\\choco_nupkg")) {
-		CString mainInstruction; mainInstruction.LoadStringW(hInstance, IDS_CANTLAUNCH);
-		CString content; content.LoadStringW(hInstance, IDS_EXTRACTFAIL);
-		ShowFailureDialog(mainInstruction, content);
+		CString mainInstruction; mainInstruction.LoadStringW(hInstance, IDS_EXTRACTFAIL);
+		ShowFailureDialog(mainInstruction, _T(""));
 		return 1;
 	}
 
 	if (!ExtractZip(IDR_WIZARD_ZIP, outputDir)) {
-		CString mainInstruction; mainInstruction.LoadStringW(hInstance, IDS_CANTLAUNCH);
-		CString content; content.LoadStringW(hInstance, IDS_EXTRACTFAIL);
-		ShowFailureDialog(mainInstruction, content);
+		CString mainInstruction; mainInstruction.LoadStringW(hInstance, IDS_EXTRACTFAIL);
+		ShowFailureDialog(mainInstruction, _T(""));
 		return 1;
 	}
 
@@ -108,9 +106,8 @@ int WINAPI _tWinMain(HINSTANCE hInst, HINSTANCE /* hPrevInstance */, LPTSTR cmdL
 	si.dwFlags = STARTF_USESHOWWINDOW;
 
 	if (!CreateProcess(cmd.GetString(), _T(""), nullptr, nullptr, false, 0, nullptr, nullptr, &si, &pi)) {
-		CString mainInstruction; mainInstruction.LoadStringW(hInstance, IDS_CANTLAUNCH);
-		CString content; content.LoadStringW(hInstance, IDS_EXECFAIL);
-		ShowFailureDialog(mainInstruction, content);
+		CString mainInstruction; mainInstruction.LoadStringW(hInstance, IDS_EXECFAIL);
+		ShowFailureDialog(mainInstruction, _T(""));
 		return -1;
 	}
 
