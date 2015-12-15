@@ -43,10 +43,7 @@ static bool ExtractZip(WORD zipResourceId, const CString& directory) {
 		ZIPENTRY zipEntry;
 
 		zr = GetZipItem(zipFile, index, &zipEntry);
-		if (zr != ZR_MORE && zr != ZR_OK) {
-			result = false;
-			break;
-		}
+		if (zr != ZR_MORE && zr != ZR_OK) break;
 
 		CString targetFile = directory + "\\" + zipEntry.name;
 		DeleteFile(targetFile.GetString());
