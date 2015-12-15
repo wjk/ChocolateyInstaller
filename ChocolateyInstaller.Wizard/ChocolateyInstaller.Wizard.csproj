@@ -69,7 +69,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Licenses.resx" />
     <EmbeddedResource Include="LicensesControl.resx">
       <DependentUpon>LicensesControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -115,8 +114,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Licenses\GitPad.txt" />
-    <Content Include="Licenses\Squirrel.Windows.txt" />
     <Content Include="Setup.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
