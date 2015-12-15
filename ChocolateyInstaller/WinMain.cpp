@@ -28,6 +28,19 @@ static void ShowFailureDialog(const CString& mainInstruction, const CString& con
 	td.DoModal(HWND_DESKTOP);
 }
 
+static bool IsDotNetFrameworkInstalled(void) {
+	CRegKey key;
+	if (key.Open(HKEY_LOCAL_MACHINE, _T("SOFTWARE\\Microsoft\\NET Framework Setup\\NDP\\v4\\Full")) != ERROR_SUCCESS) return false;
+
+	DWORD dwReleaseInfo;
+	if (key.QueryDWORDValue(_T("Release"), dwReleaseInfo) != ERROR_SUCCESS) return false;
+
+	const DWORD minimumDesiredVersion = 379893;
+	if (dwReleaseInfo < minimumDesiredVersion) return false;
+
+	return true;
+}
+
 static bool ExtractZip(WORD zipResourceId, const CString& directory) {
 	CResource zipResource;
 	if (!zipResource.Load(_T("ZIPFILE"), zipResourceId)) return false;
