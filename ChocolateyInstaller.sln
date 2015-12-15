@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ChocolateyInstaller", "ChocolateyInstaller\ChocolateyInstaller.vcxproj", "{605058E1-CDEA-44B2-9601-BF3CF9AD50DF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{816ECB23-4659-4B9A-990E-F92EBD2F651C} = {816ECB23-4659-4B9A-990E-F92EBD2F651C}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChocolateyInstaller.Wizard", "ChocolateyInstaller.Wizard\ChocolateyInstaller.Wizard.csproj", "{EEDDEFE1-10C4-4DAE-9670-2CDA261FE011}"
 EndProject
@@ -16,6 +19,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChocolateyInstaller.VersionHelpers", "ChocolateyInstaller.VersionHelpers\ChocolateyInstaller.VersionHelpers.csproj", "{8517761D-8F0A-4D97-B823-F293B887024B}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ChocolateyInstaller.CreateZipArchives", "ChocolateyInstaller.CreateZipArchives\ChocolateyInstaller.CreateZipArchives.vcxproj", "{816ECB23-4659-4B9A-990E-F92EBD2F651C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EEDDEFE1-10C4-4DAE-9670-2CDA261FE011} = {EEDDEFE1-10C4-4DAE-9670-2CDA261FE011}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
