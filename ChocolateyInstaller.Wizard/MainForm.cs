@@ -43,6 +43,8 @@ namespace ChocolateyInstaller.Wizard
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            LicensesControl view = new LicensesControl();
+            LicenseControlPanel.Controls.Add(view);
         }
 
         private void WhyChocolateyLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -96,6 +98,11 @@ namespace ChocolateyInstaller.Wizard
         {
             WizardControl.NextButtonShieldEnabled = false;
             WizardControl.NextButtonText = "&Next";
+        }
+
+        private void LicensesAgreedCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            LicensesPage.AllowNext = LicensesAgreedCheckBox.Checked;
         }
     }
 }

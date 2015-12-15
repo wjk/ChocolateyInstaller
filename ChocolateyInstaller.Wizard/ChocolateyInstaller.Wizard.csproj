@@ -55,6 +55,12 @@
     <Compile Include="FixedLinkLabel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="LicensesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LicensesControl.Designer.cs">
+      <DependentUpon>LicensesControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +70,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Licenses.resx" />
+    <EmbeddedResource Include="LicensesControl.resx">
+      <DependentUpon>LicensesControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

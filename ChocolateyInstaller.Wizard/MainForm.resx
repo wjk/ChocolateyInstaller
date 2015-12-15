@@ -325,7 +325,7 @@
     <value>NoControl</value>
   </data>
   <data name="ChocolateyWebsiteLinkLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>173, 237</value>
+    <value>173, 240</value>
   </data>
   <data name="ChocolateyWebsiteLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>155, 15</value>
@@ -358,7 +358,7 @@
     <value>NoControl</value>
   </data>
   <data name="WhyChocolateyLinkLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 237</value>
+    <value>3, 240</value>
   </data>
   <data name="WhyChocolateyLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>164, 15</value>
@@ -380,6 +380,63 @@
   </data>
   <data name="&gt;&gt;WhyChocolateyLinkLabel.ZOrder" xml:space="preserve">
     <value>6</value>
+  </data>
+  <data name="LicenseControlPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
+  </data>
+  <data name="LicenseControlPanel.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LicenseControlPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="LicenseControlPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>440, 230</value>
+  </data>
+  <data name="LicenseControlPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;LicenseControlPanel.Name" xml:space="preserve">
+    <value>LicenseControlPanel</value>
+  </data>
+  <data name="&gt;&gt;LicenseControlPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LicenseControlPanel.Parent" xml:space="preserve">
+    <value>LicensesPage</value>
+  </data>
+  <data name="&gt;&gt;LicenseControlPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="LicensesAgreedCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LicensesAgreedCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LicensesAgreedCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 236</value>
+  </data>
+  <data name="LicensesAgreedCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>470, 19</value>
+  </data>
+  <data name="LicensesAgreedCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="LicensesAgreedCheckBox.Text" xml:space="preserve">
+    <value>&amp;By checking this box, I confirm that I have read and agreed to the terms listed above.</value>
+  </data>
+  <data name="&gt;&gt;LicensesAgreedCheckBox.Name" xml:space="preserve">
+    <value>LicensesAgreedCheckBox</value>
+  </data>
+  <data name="&gt;&gt;LicensesAgreedCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LicensesAgreedCheckBox.Parent" xml:space="preserve">
+    <value>LicensesPage</value>
+  </data>
+  <data name="&gt;&gt;LicensesAgreedCheckBox.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="ChooseInstallLocationButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -444,6 +501,21 @@
   <data name="&gt;&gt;InstallOptionsPage.Type" xml:space="preserve">
     <value>AeroWizard.WizardPage, AeroWizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
+  <data name="LicensesPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>547, 258</value>
+  </data>
+  <data name="LicensesPage.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="LicensesPage.Text" xml:space="preserve">
+    <value>License agreement</value>
+  </data>
+  <data name="&gt;&gt;LicensesPage.Name" xml:space="preserve">
+    <value>LicensesPage</value>
+  </data>
+  <data name="&gt;&gt;LicensesPage.Type" xml:space="preserve">
+    <value>AeroWizard.WizardPage, AeroWizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
   <data name="IntroductionPage.Size" type="System.Drawing.Size, System.Drawing">
     <value>547, 258</value>
   </data>
@@ -461,6 +533,9 @@
   </data>
   <data name="StepDescriptionLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="StepDescriptionLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="StepDescriptionLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 29</value>
@@ -488,6 +563,9 @@
   </data>
   <data name="&gt;&gt;StepDescriptionLabel.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="InstallProgressBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="InstallProgressBar.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
@@ -3423,6 +3501,9 @@
         4cTE/+HExP/hxMT/AAAAAAAAAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAA
         AAEAAMABAADAAQAAgAAAAIAAAADgAwAA
 </value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Chocolatey Installer</value>
