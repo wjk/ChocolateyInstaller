@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace ChocolateyInstaller.ElevationUtility
+namespace ChocolateyInstaller
 {
     internal static class NativeMethods
     {

@@ -1,4 +1,4 @@
-﻿namespace ChocolateyInstaller.ElevationUtility
+﻿namespace ChocolateyInstaller
 {
     internal static class TOKEN_ACCESS_RIGHTS
     {

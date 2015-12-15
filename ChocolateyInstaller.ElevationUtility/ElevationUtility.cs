@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using ChocolateyInstaller.VersionHelpers;
 
-namespace ChocolateyInstaller.ElevationUtility
+namespace ChocolateyInstaller
 {
     /// <summary>
     /// Contains methods that interact with the Windows User Account Control security mechanism.

@@ -1,4 +1,4 @@
-﻿namespace ChocolateyInstaller.ElevationUtility
+﻿namespace ChocolateyInstaller
 {
     internal enum TOKEN_INFORMATION_CLASS
     {
