@@ -75,9 +75,9 @@ int WINAPI _tWinMain(HINSTANCE hInst, HINSTANCE /* hPrevInstance */, LPTSTR cmdL
 	hInstance = hInst;
 
 	HANDLE hMutex = ::OpenMutex(SYNCHRONIZE, false, REENTRANCY_MUTEX_NAME);
-	bool alreadyExists = (hMutex == NULL && GetLastError() == ERROR_FILE_NOT_FOUND);
+	bool alreadyExists = !(hMutex == NULL && GetLastError() == ERROR_FILE_NOT_FOUND);
 
-	if (!alreadyExists) {
+	if (alreadyExists) {
 		CString mainInstruction; mainInstruction.LoadStringW(hInstance, IDS_REENTRANCY);
 		CString content; content.LoadStringW(hInstance, IDS_REENTRANCY_DESC);
 		ShowFailureDialog(mainInstruction, content);
