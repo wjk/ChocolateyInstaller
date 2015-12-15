@@ -36,18 +36,18 @@
             System.Windows.Forms.Label label5;
             System.Windows.Forms.Label label6;
             this.WizardControl = new AeroWizard.WizardControl();
+            this.IntroductionPage = new AeroWizard.WizardPage();
+            this.ChocolateyWebsiteLinkLabel = new ChocolateyInstaller.Wizard.FixedLinkLabel();
+            this.WhyChocolateyLinkLabel = new ChocolateyInstaller.Wizard.FixedLinkLabel();
             this.LicensesPage = new AeroWizard.WizardPage();
             this.LicenseControlPanel = new System.Windows.Forms.Panel();
             this.LicensesAgreedCheckBox = new System.Windows.Forms.CheckBox();
             this.InstallOptionsPage = new AeroWizard.WizardPage();
             this.ChooseInstallLocationButton = new System.Windows.Forms.Button();
             this.InstallLocationTextBox = new System.Windows.Forms.TextBox();
-            this.IntroductionPage = new AeroWizard.WizardPage();
             this.InstallingPage = new AeroWizard.WizardPage();
             this.StepDescriptionLabel = new System.Windows.Forms.Label();
             this.InstallProgressBar = new System.Windows.Forms.ProgressBar();
-            this.ChocolateyWebsiteLinkLabel = new ChocolateyInstaller.Wizard.FixedLinkLabel();
-            this.WhyChocolateyLinkLabel = new ChocolateyInstaller.Wizard.FixedLinkLabel();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -55,9 +55,9 @@
             label5 = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.WizardControl)).BeginInit();
+            this.IntroductionPage.SuspendLayout();
             this.LicensesPage.SuspendLayout();
             this.InstallOptionsPage.SuspendLayout();
-            this.IntroductionPage.SuspendLayout();
             this.InstallingPage.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,6 +101,34 @@
             this.WizardControl.Pages.Add(this.InstallingPage);
             this.WizardControl.Cancelling += new System.ComponentModel.CancelEventHandler(this.WizardControl_Cancelling);
             this.WizardControl.Finished += new System.EventHandler(this.WizardControl_Finished);
+            // 
+            // IntroductionPage
+            // 
+            this.IntroductionPage.AllowBack = false;
+            this.IntroductionPage.Controls.Add(this.ChocolateyWebsiteLinkLabel);
+            this.IntroductionPage.Controls.Add(label5);
+            this.IntroductionPage.Controls.Add(label4);
+            this.IntroductionPage.Controls.Add(label3);
+            this.IntroductionPage.Controls.Add(label2);
+            this.IntroductionPage.Controls.Add(label1);
+            this.IntroductionPage.Controls.Add(this.WhyChocolateyLinkLabel);
+            this.IntroductionPage.Name = "IntroductionPage";
+            this.IntroductionPage.NextPage = this.LicensesPage;
+            resources.ApplyResources(this.IntroductionPage, "IntroductionPage");
+            // 
+            // ChocolateyWebsiteLinkLabel
+            // 
+            resources.ApplyResources(this.ChocolateyWebsiteLinkLabel, "ChocolateyWebsiteLinkLabel");
+            this.ChocolateyWebsiteLinkLabel.Name = "ChocolateyWebsiteLinkLabel";
+            this.ChocolateyWebsiteLinkLabel.TabStop = true;
+            this.ChocolateyWebsiteLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ChocolateyWebsiteLinkLabel_LinkClicked);
+            // 
+            // WhyChocolateyLinkLabel
+            // 
+            resources.ApplyResources(this.WhyChocolateyLinkLabel, "WhyChocolateyLinkLabel");
+            this.WhyChocolateyLinkLabel.Name = "WhyChocolateyLinkLabel";
+            this.WhyChocolateyLinkLabel.TabStop = true;
+            this.WhyChocolateyLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.WhyChocolateyLinkLabel_LinkClicked);
             // 
             // LicensesPage
             // 
@@ -147,20 +175,6 @@
             resources.ApplyResources(this.InstallLocationTextBox, "InstallLocationTextBox");
             this.InstallLocationTextBox.Name = "InstallLocationTextBox";
             // 
-            // IntroductionPage
-            // 
-            this.IntroductionPage.AllowBack = false;
-            this.IntroductionPage.Controls.Add(this.ChocolateyWebsiteLinkLabel);
-            this.IntroductionPage.Controls.Add(label5);
-            this.IntroductionPage.Controls.Add(label4);
-            this.IntroductionPage.Controls.Add(label3);
-            this.IntroductionPage.Controls.Add(label2);
-            this.IntroductionPage.Controls.Add(label1);
-            this.IntroductionPage.Controls.Add(this.WhyChocolateyLinkLabel);
-            this.IntroductionPage.Name = "IntroductionPage";
-            this.IntroductionPage.NextPage = this.LicensesPage;
-            resources.ApplyResources(this.IntroductionPage, "IntroductionPage");
-            // 
             // InstallingPage
             // 
             this.InstallingPage.AllowBack = false;
@@ -182,20 +196,6 @@
             resources.ApplyResources(this.InstallProgressBar, "InstallProgressBar");
             this.InstallProgressBar.Name = "InstallProgressBar";
             // 
-            // ChocolateyWebsiteLinkLabel
-            // 
-            resources.ApplyResources(this.ChocolateyWebsiteLinkLabel, "ChocolateyWebsiteLinkLabel");
-            this.ChocolateyWebsiteLinkLabel.Name = "ChocolateyWebsiteLinkLabel";
-            this.ChocolateyWebsiteLinkLabel.TabStop = true;
-            this.ChocolateyWebsiteLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ChocolateyWebsiteLinkLabel_LinkClicked);
-            // 
-            // WhyChocolateyLinkLabel
-            // 
-            resources.ApplyResources(this.WhyChocolateyLinkLabel, "WhyChocolateyLinkLabel");
-            this.WhyChocolateyLinkLabel.Name = "WhyChocolateyLinkLabel";
-            this.WhyChocolateyLinkLabel.TabStop = true;
-            this.WhyChocolateyLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.WhyChocolateyLinkLabel_LinkClicked);
-            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -208,12 +208,12 @@
             this.Name = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.WizardControl)).EndInit();
+            this.IntroductionPage.ResumeLayout(false);
+            this.IntroductionPage.PerformLayout();
             this.LicensesPage.ResumeLayout(false);
             this.LicensesPage.PerformLayout();
             this.InstallOptionsPage.ResumeLayout(false);
             this.InstallOptionsPage.PerformLayout();
-            this.IntroductionPage.ResumeLayout(false);
-            this.IntroductionPage.PerformLayout();
             this.InstallingPage.ResumeLayout(false);
             this.InstallingPage.PerformLayout();
             this.ResumeLayout(false);

@@ -47,8 +47,8 @@
             System.Windows.Forms.Label label16;
             System.Windows.Forms.Label label17;
             this.LicenseURLLinkLabel = new ChocolateyInstaller.Wizard.FixedLinkLabel();
-            this.GitPadHomepageLinkLabel = new ChocolateyInstaller.Wizard.FixedLinkLabel();
-            this.SquirrelHomepageLinkLabel = new ChocolateyInstaller.Wizard.FixedLinkLabel();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -160,37 +160,31 @@
             this.LicenseURLLinkLabel.TabStop = true;
             this.LicenseURLLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LicenseURLLinkLabel_LinkClicked);
             // 
-            // GitPadHomepageLinkLabel
+            // label18
             // 
-            resources.ApplyResources(this.GitPadHomepageLinkLabel, "GitPadHomepageLinkLabel");
-            this.GitPadHomepageLinkLabel.Name = "GitPadHomepageLinkLabel";
-            this.GitPadHomepageLinkLabel.TabStop = true;
-            this.GitPadHomepageLinkLabel.UseCompatibleTextRendering = true;
-            this.GitPadHomepageLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GitPadHomepageLinkLabel_LinkClicked);
+            resources.ApplyResources(this.label18, "label18");
+            this.label18.Name = "label18";
             // 
-            // SquirrelHomepageLinkLabel
+            // label19
             // 
-            resources.ApplyResources(this.SquirrelHomepageLinkLabel, "SquirrelHomepageLinkLabel");
-            this.SquirrelHomepageLinkLabel.Name = "SquirrelHomepageLinkLabel";
-            this.SquirrelHomepageLinkLabel.TabStop = true;
-            this.SquirrelHomepageLinkLabel.UseCompatibleTextRendering = true;
-            this.SquirrelHomepageLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SquirrelHomepageLinkLabel_LinkClicked);
+            resources.ApplyResources(this.label19, "label19");
+            this.label19.Name = "label19";
             // 
             // LicensesControl
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.label18);
             this.Controls.Add(label14);
             this.Controls.Add(label15);
             this.Controls.Add(label16);
             this.Controls.Add(label17);
-            this.Controls.Add(this.SquirrelHomepageLinkLabel);
             this.Controls.Add(label10);
             this.Controls.Add(label11);
             this.Controls.Add(label12);
             this.Controls.Add(label13);
-            this.Controls.Add(this.GitPadHomepageLinkLabel);
             this.Controls.Add(label9);
             this.Controls.Add(label8);
             this.Controls.Add(label7);
@@ -210,7 +204,7 @@
         #endregion
 
         private FixedLinkLabel LicenseURLLinkLabel;
-        private FixedLinkLabel GitPadHomepageLinkLabel;
-        private FixedLinkLabel SquirrelHomepageLinkLabel;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
     }
 }

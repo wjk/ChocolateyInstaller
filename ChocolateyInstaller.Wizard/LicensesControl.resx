@@ -460,7 +460,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <metadata name="label11.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -493,7 +493,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <metadata name="label12.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -526,7 +526,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <metadata name="label13.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -562,7 +562,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <metadata name="label14.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -595,7 +595,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label14.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <metadata name="label15.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -628,7 +628,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <metadata name="label16.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -661,7 +661,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <metadata name="label17.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -697,7 +697,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <metadata name="LicenseURLLinkLabel.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -729,74 +729,62 @@
   <data name="&gt;&gt;LicenseURLLinkLabel.ZOrder" xml:space="preserve">
     <value>17</value>
   </data>
-  <metadata name="GitPadHomepageLinkLabel.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="GitPadHomepageLinkLabel.AutoSize" type="System.Boolean, mscorlib">
+  <data name="label18.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="GitPadHomepageLinkLabel.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
-    <value>40, 6</value>
+  <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 540</value>
   </data>
-  <data name="GitPadHomepageLinkLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 539</value>
+  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 15</value>
   </data>
-  <data name="GitPadHomepageLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>262, 21</value>
+  <data name="label18.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
   </data>
-  <data name="GitPadHomepageLinkLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="GitPadHomepageLinkLabel.Text" xml:space="preserve">
+  <data name="label18.Text" xml:space="preserve">
     <value>This project contains code derived from GitPad.</value>
   </data>
-  <data name="&gt;&gt;GitPadHomepageLinkLabel.Name" xml:space="preserve">
-    <value>GitPadHomepageLinkLabel</value>
+  <data name="&gt;&gt;label18.Name" xml:space="preserve">
+    <value>label18</value>
   </data>
-  <data name="&gt;&gt;GitPadHomepageLinkLabel.Type" xml:space="preserve">
-    <value>ChocolateyInstaller.Wizard.FixedLinkLabel, ChocolateyInstaller.Wizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  <data name="&gt;&gt;label18.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;GitPadHomepageLinkLabel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;label18.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;GitPadHomepageLinkLabel.ZOrder" xml:space="preserve">
-    <value>9</value>
+  <data name="&gt;&gt;label18.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <metadata name="SquirrelHomepageLinkLabel.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="SquirrelHomepageLinkLabel.AutoSize" type="System.Boolean, mscorlib">
+  <data name="label19.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="SquirrelHomepageLinkLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="label19.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="SquirrelHomepageLinkLabel.LinkArea" type="System.Windows.Forms.LinkArea, System.Windows.Forms">
-    <value>40, 16</value>
+  <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 883</value>
   </data>
-  <data name="SquirrelHomepageLinkLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 883</value>
+  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>315, 15</value>
   </data>
-  <data name="SquirrelHomepageLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>321, 21</value>
+  <data name="label19.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
   </data>
-  <data name="SquirrelHomepageLinkLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="SquirrelHomepageLinkLabel.Text" xml:space="preserve">
+  <data name="label19.Text" xml:space="preserve">
     <value>This project contains code derived from Squirrel.Windows.</value>
   </data>
-  <data name="&gt;&gt;SquirrelHomepageLinkLabel.Name" xml:space="preserve">
-    <value>SquirrelHomepageLinkLabel</value>
+  <data name="&gt;&gt;label19.Name" xml:space="preserve">
+    <value>label19</value>
   </data>
-  <data name="&gt;&gt;SquirrelHomepageLinkLabel.Type" xml:space="preserve">
-    <value>ChocolateyInstaller.Wizard.FixedLinkLabel, ChocolateyInstaller.Wizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  <data name="&gt;&gt;label19.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;SquirrelHomepageLinkLabel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;label19.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;SquirrelHomepageLinkLabel.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="&gt;&gt;label19.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

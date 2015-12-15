@@ -21,15 +21,5 @@ namespace ChocolateyInstaller.Wizard
         {
             System.Diagnostics.Process.Start("http://www.apache.org/licenses/LICENSE-2.0");
         }
-
-        private void GitPadHomepageLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://github.com/github/GitPad");
-        }
-
-        private void SquirrelHomepageLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://github.com/Squirrel/Squirrel.Windows");
-        }
     }
 }
