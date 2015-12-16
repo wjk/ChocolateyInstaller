@@ -111,9 +111,10 @@ namespace ChocolateyInstaller.Wizard
 
         private void InstallingPage_Initialize(object sender, AeroWizard.WizardPageInitEventArgs e)
         {
-            AnonymousPipeServerStream pipe = new AnonymousPipeServerStream(PipeDirection.In);
+            const string pipeName = "Chocolatey Installer\\User Interface Progress";
+            NamedPipeServerStream pipe = new NamedPipeServerStream(pipeName, PipeDirection.In);
 
-            ProcessStartInfo processInfo = new ProcessStartInfo(System.Reflection.Assembly.GetEntryAssembly().Location, $"install /destination \"{InstallRoot}\" /statuspipe \"{pipe.GetClientHandleAsString()}\"");
+            ProcessStartInfo processInfo = new ProcessStartInfo(System.Reflection.Assembly.GetEntryAssembly().Location, $"install /destination \"{InstallRoot}\" /statuspipe \"{pipeName}\"");
             processInfo.UseShellExecute = true;
             if (WindowsVersion.IsWindowsVista()) processInfo.Verb = "runas";
 
@@ -125,7 +126,9 @@ namespace ChocolateyInstaller.Wizard
 
         private void PipeReadThread(object param)
         {
-            Stream stream = (Stream)param;
+            NamedPipeServerStream stream = (NamedPipeServerStream)param;
+            stream.WaitForConnection();
+
             using (StreamReader reader = new StreamReader(stream))
             {
                 bool continueLoop = true;
@@ -138,6 +141,8 @@ namespace ChocolateyInstaller.Wizard
                     BeginInvoke(invoke);
                 }
             }
+
+            stream.Dispose();
         }
 
         private void ProcessIPCMessage(string msg)

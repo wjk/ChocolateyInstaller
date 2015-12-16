@@ -38,7 +38,7 @@ namespace ChocolateyInstaller.Wizard
                         }
                     }
 
-                    AnonymousPipeClientStream pipe = (pipe_name != null) ? new AnonymousPipeClientStream(PipeDirection.Out, pipe_name) : null;
+                    NamedPipeClientStream pipe = (pipe_name != null) ? new NamedPipeClientStream(".", pipe_name, PipeDirection.Out) : null;
                     BatchInstaller installer = new BatchInstaller(pipe);
                     installer.DestinationDirectory = destination_directory;
 
@@ -46,10 +46,15 @@ namespace ChocolateyInstaller.Wizard
                     MessageBox.Show("Pausing for debugger, please attach now.", "Chocolatey Installer", MessageBoxButtons.OK, MessageBoxIcon.Information);
 #endif
 
+                    pipe.Connect();
                     installer.Run();
 
-                    byte[] doneMsg = System.Text.Encoding.UTF8.GetBytes("DONE\n");
-                    if (pipe != null) pipe.Write(doneMsg, 0, doneMsg.Length);
+                    if (pipe != null)
+                    {
+                        byte[] doneMsg = System.Text.Encoding.UTF8.GetBytes("DONE\n");
+                        pipe.Write(doneMsg, 0, doneMsg.Length);
+                        pipe.Dispose();
+                    }
                 }
                 catch (Exception ex)
                 {
