@@ -152,24 +152,61 @@ namespace ChocolateyInstaller.Wizard
             string[] words = msg.Split(',');
             if (words[0] == "DONE")
             {
-
+                InstallProgressBar.Value = InstallProgressBar.Maximum;
+                StepDescriptionLabel.Text = "Installation complete";
+                InstallingPage.AllowNext = true;
             }
             else if (words[0] == "STEP-COUNT")
             {
-                InstallProgressBar.Maximum = int.Parse(words[1]);
+                InstallProgressBar.Maximum = int.Parse(words[1]) + 1;
                 InstallProgressBar.Value = 0;
             }
             else if (words[0] == "STEP")
             {
+                string description;
+                switch (words[2])
+                {
+                    case "InstallChocolatey": description = "Installing Chocolatey..."; break;
+                    case "UpgradeChocolatey": description = "Ensuring Chocolatey is the latest version..."; break;
+                    case "InstallGUI": description = "Installing Chocolatey GUI..."; break;
+                    default: description = "Processing..."; break;
+                }
+
                 InstallProgressBar.Value = int.Parse(words[1]) + 1;
-                StepDescriptionLabel.Text = words[2];
+                StepDescriptionLabel.Text = description;
                 StepDescriptionLabel.Visible = true;
             }
             else if (words[0] == "ERROR_STRING")
             {
-                StepDescriptionLabel.Text = $"Subprocess reported error: {words[1]}";
-                StepDescriptionLabel.Visible = true;
+                ReportInstallationError($"The privileged installer process returned the following error: \"{words[1]}\"");
             }
+            else if (words[0] == "STEP-FAIL")
+            {
+                string content;
+                switch (words[1])
+                {
+                    case "InstallChocolatey": content = "The privileged installer process could not install Chocolatey."; break;
+                    case "UpgradeChocolatey": content = "The privileged installer process failed while upgrading Chocolatey to the latest version."; break;
+                    case "InstallGUI": content = "The privileged installer process could not install ChocolateyGUI."; break;
+                    default: content = "The privileged installer process could not complete a required step."; break;
+                }
+
+                ReportInstallationError(content);
+            }
+        }
+
+        private void ReportInstallationError(string content)
+        {
+            VistaTaskDialog td = new VistaTaskDialog();
+            td.WindowTitle = "Chocolatey Installer";
+            td.MainInstruction = "Chocolatey failed to install. You may need to clean up your system manually.";
+            td.Content = content;
+            td.MainIcon = VistaTaskDialogIcon.Error;
+            td.CommonButtons = VistaTaskDialogCommonButtons.Close;
+            td.AllowDialogCancellation = true;
+            td.Show(this);
+
+            Application.Exit();
         }
     }
 }

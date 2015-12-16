@@ -35,6 +35,8 @@
             System.Windows.Forms.Label label4;
             System.Windows.Forms.Label label5;
             System.Windows.Forms.Label label6;
+            System.Windows.Forms.Label label7;
+            System.Windows.Forms.Label label9;
             this.WizardControl = new AeroWizard.WizardControl();
             this.IntroductionPage = new AeroWizard.WizardPage();
             this.ChocolateyWebsiteLinkLabel = new ChocolateyInstaller.Wizard.FixedLinkLabel();
@@ -48,17 +50,22 @@
             this.InstallingPage = new AeroWizard.WizardPage();
             this.StepDescriptionLabel = new System.Windows.Forms.Label();
             this.InstallProgressBar = new System.Windows.Forms.ProgressBar();
+            this.InstallSucceededPage = new AeroWizard.WizardPage();
+            this.label8 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
             label5 = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
+            label7 = new System.Windows.Forms.Label();
+            label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.WizardControl)).BeginInit();
             this.IntroductionPage.SuspendLayout();
             this.LicensesPage.SuspendLayout();
             this.InstallOptionsPage.SuspendLayout();
             this.InstallingPage.SuspendLayout();
+            this.InstallSucceededPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -91,6 +98,16 @@
             resources.ApplyResources(label6, "label6");
             label6.Name = "label6";
             // 
+            // label7
+            // 
+            resources.ApplyResources(label7, "label7");
+            label7.Name = "label7";
+            // 
+            // label9
+            // 
+            resources.ApplyResources(label9, "label9");
+            label9.Name = "label9";
+            // 
             // WizardControl
             // 
             resources.ApplyResources(this.WizardControl, "WizardControl");
@@ -99,6 +116,7 @@
             this.WizardControl.Pages.Add(this.LicensesPage);
             this.WizardControl.Pages.Add(this.InstallOptionsPage);
             this.WizardControl.Pages.Add(this.InstallingPage);
+            this.WizardControl.Pages.Add(this.InstallSucceededPage);
             this.WizardControl.Cancelling += new System.ComponentModel.CancelEventHandler(this.WizardControl_Cancelling);
             this.WizardControl.Finished += new System.EventHandler(this.WizardControl_Finished);
             // 
@@ -197,6 +215,21 @@
             resources.ApplyResources(this.InstallProgressBar, "InstallProgressBar");
             this.InstallProgressBar.Name = "InstallProgressBar";
             // 
+            // InstallSucceededPage
+            // 
+            this.InstallSucceededPage.AllowBack = false;
+            this.InstallSucceededPage.AllowNext = false;
+            this.InstallSucceededPage.Controls.Add(label9);
+            this.InstallSucceededPage.Controls.Add(label7);
+            this.InstallSucceededPage.IsFinishPage = true;
+            this.InstallSucceededPage.Name = "InstallSucceededPage";
+            resources.ApplyResources(this.InstallSucceededPage, "InstallSucceededPage");
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -217,6 +250,7 @@
             this.InstallOptionsPage.PerformLayout();
             this.InstallingPage.ResumeLayout(false);
             this.InstallingPage.PerformLayout();
+            this.InstallSucceededPage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -236,6 +270,8 @@
         private AeroWizard.WizardPage LicensesPage;
         private System.Windows.Forms.CheckBox LicensesAgreedCheckBox;
         private System.Windows.Forms.Panel LicenseControlPanel;
+        private AeroWizard.WizardPage InstallSucceededPage;
+        private System.Windows.Forms.Label label8;
     }
 }
 
