@@ -59,7 +59,11 @@ namespace ChocolateyInstaller.Wizard
                 return false;
             }
 
+            // I must remove the existing chocolateyInstall environment variable, or else
+            // Initialize-Chocolatey will ignore my explicit override path in favor of an
+            // already-installed copy, if one is present.
             return RunScript($@"
+Remove-Item Env:\chocolateyInstall -ErrorAction SilentlyContinue | Out-Null
 New-Item -Type Directory ""{DestinationDirectory}"" -ErrorAction SilentlyContinue | Out-Null
 Import-Module ""{chocoInstallModulePath}""
 Initialize-Chocolatey -chocolateyPath ""{DestinationDirectory}""
