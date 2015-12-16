@@ -55,7 +55,7 @@ namespace ChocolateyInstaller.Wizard
 
             if (DestinationDirectory == null)
             {
-                WriteLine("ERROR_STRING,CHOCO_DESTINATION variable not set");
+                WriteLine("ERROR_STRING,Install destination not set");
                 return false;
             }
 
@@ -74,7 +74,7 @@ Initialize-Chocolatey -chocolateyPath ""{DestinationDirectory}""
         {
             if (DestinationDirectory == null)
             {
-                WriteLine("ERROR_STRING,CHOCO_DESTINATION variable not set");
+                WriteLine("ERROR_STRING,Install destination not set");
                 return false;
             }
 
@@ -86,7 +86,7 @@ Initialize-Chocolatey -chocolateyPath ""{DestinationDirectory}""
         {
             if (DestinationDirectory == null)
             {
-                WriteLine("ERROR_STRING,CHOCO_DESTINATION variable not set");
+                WriteLine("ERROR_STRING,Install destination not set");
                 return false;
             }
 
@@ -96,7 +96,11 @@ Initialize-Chocolatey -chocolateyPath ""{DestinationDirectory}""
 
         private bool RunExe(string exePath, params string[] argv)
         {
-            Process child = Process.Start(exePath, string.Join(" ", argv.Select(x => $"\"{x}\"")));
+            ProcessStartInfo info = new ProcessStartInfo(exePath, string.Join(" ", argv.Select(x => $"\"{x}\"")));
+            info.WindowStyle = ProcessWindowStyle.Hidden;
+            info.CreateNoWindow = true;
+            info.UseShellExecute = false;
+            Process child = Process.Start(info);
             child.WaitForExit();
             return child.ExitCode == 0;
         }

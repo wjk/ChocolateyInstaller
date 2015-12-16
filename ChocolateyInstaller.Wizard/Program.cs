@@ -52,9 +52,9 @@ namespace ChocolateyInstaller.Wizard
                         pipe.Dispose();
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
-                    MessageBox.Show($"Caught exception: {ex.Message}\r\n\r\n{ex.StackTrace}", "Chocolatey Installer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("The privileged installer process encountered an error and must quit.", "Chocolatey Installer", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                 return;
