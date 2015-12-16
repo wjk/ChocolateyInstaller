@@ -358,7 +358,7 @@
     <value>NoControl</value>
   </data>
   <data name="WhyChocolateyLinkLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 243</value>
+    <value>-3, 243</value>
   </data>
   <data name="WhyChocolateyLinkLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>164, 15</value>
