@@ -105,9 +105,9 @@
       <Project>{03f517f2-dd18-449a-9a7b-74bc3488b672}</Project>
       <Name>AeroWizard</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ChocolateyInstaller.ElevationUtility\ChocolateyInstaller.ElevationUtility.csproj">
-      <Project>{a689b66c-afee-476d-afb2-0fd62e501c06}</Project>
-      <Name>ChocolateyInstaller.ElevationUtility</Name>
+    <ProjectReference Include="..\ChocolateyInstaller.VersionHelpers\ChocolateyInstaller.VersionHelpers.csproj">
+      <Project>{8517761d-8f0a-4d97-b823-f293b887024b}</Project>
+      <Name>ChocolateyInstaller.VersionHelpers</Name>
     </ProjectReference>
     <ProjectReference Include="..\PSTaskDialog\PSTaskDialog.csproj">
       <Project>{0253e98b-6374-48aa-8740-89bc2939ff77}</Project>
