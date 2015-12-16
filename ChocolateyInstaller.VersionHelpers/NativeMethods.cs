@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace ChocolateyInstaller.VersionHelpers
+namespace ChocolateyInstaller
 {
     internal static class NativeMethods
     {

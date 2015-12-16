@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace ChocolateyInstaller.VersionHelpers
+namespace ChocolateyInstaller
 {
     /// <summary>
     /// Contains methods useful for determining the verson of Windows that a program is running on.

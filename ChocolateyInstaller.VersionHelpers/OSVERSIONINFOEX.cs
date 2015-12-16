@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace ChocolateyInstaller.VersionHelpers
+namespace ChocolateyInstaller
 {
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
     internal struct OSVERSIONINFOEXW
