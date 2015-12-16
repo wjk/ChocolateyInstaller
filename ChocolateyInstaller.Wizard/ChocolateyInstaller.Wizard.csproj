@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BatchInstaller.cs" />
     <Compile Include="FixedLinkLabel.cs">
       <SubType>Component</SubType>
     </Compile>
