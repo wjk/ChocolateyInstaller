@@ -135,6 +135,8 @@ namespace ChocolateyInstaller.Wizard
                 while (continueLoop)
                 {
                     string msg = reader.ReadLine();
+                    if (msg == null) break; // because null indicates end-of-stream
+
                     if (msg == "DONE") continueLoop = false;
 
                     Action invoke = () => ProcessIPCMessage(msg);
