@@ -155,6 +155,7 @@ namespace ChocolateyInstaller.Wizard
                 InstallProgressBar.Value = InstallProgressBar.Maximum;
                 StepDescriptionLabel.Text = "Installation complete";
                 InstallingPage.AllowNext = true;
+                WizardControl.NextPage();
             }
             else if (words[0] == "STEP-COUNT")
             {

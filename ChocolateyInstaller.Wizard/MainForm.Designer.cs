@@ -176,6 +176,7 @@
             this.InstallOptionsPage.Controls.Add(this.InstallLocationTextBox);
             this.InstallOptionsPage.Controls.Add(label6);
             this.InstallOptionsPage.Name = "InstallOptionsPage";
+            this.InstallOptionsPage.NextPage = this.InstallingPage;
             resources.ApplyResources(this.InstallOptionsPage, "InstallOptionsPage");
             this.InstallOptionsPage.Commit += new System.EventHandler<AeroWizard.WizardPageConfirmEventArgs>(this.InstallOptionsPage_Commit);
             this.InstallOptionsPage.Enter += new System.EventHandler(this.InstallOptionsPage_Enter);
@@ -201,6 +202,7 @@
             this.InstallingPage.Controls.Add(this.StepDescriptionLabel);
             this.InstallingPage.Controls.Add(this.InstallProgressBar);
             this.InstallingPage.Name = "InstallingPage";
+            this.InstallingPage.NextPage = this.InstallSucceededPage;
             this.InstallingPage.ShowNext = false;
             resources.ApplyResources(this.InstallingPage, "InstallingPage");
             this.InstallingPage.Initialize += new System.EventHandler<AeroWizard.WizardPageInitEventArgs>(this.InstallingPage_Initialize);
@@ -218,7 +220,7 @@
             // InstallSucceededPage
             // 
             this.InstallSucceededPage.AllowBack = false;
-            this.InstallSucceededPage.AllowNext = false;
+            this.InstallSucceededPage.AllowCancel = false;
             this.InstallSucceededPage.Controls.Add(label9);
             this.InstallSucceededPage.Controls.Add(label7);
             this.InstallSucceededPage.IsFinishPage = true;

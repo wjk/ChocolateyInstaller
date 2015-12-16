@@ -318,6 +318,9 @@
   <data name="label7.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 12world, style=Bold</value>
   </data>
+  <data name="label7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
@@ -492,6 +495,21 @@
   <data name="&gt;&gt;LicensesAgreedCheckBox.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="ChooseInstallLocationButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ChooseInstallLocationButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>377, 48</value>
+  </data>
+  <data name="ChooseInstallLocationButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="ChooseInstallLocationButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="ChooseInstallLocationButton.Text" xml:space="preserve">
+    <value>&amp;Browse...</value>
+  </data>
   <data name="&gt;&gt;ChooseInstallLocationButton.Name" xml:space="preserve">
     <value>ChooseInstallLocationButton</value>
   </data>
@@ -504,6 +522,15 @@
   <data name="&gt;&gt;ChooseInstallLocationButton.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="InstallLocationTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 49</value>
+  </data>
+  <data name="InstallLocationTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>350, 23</value>
+  </data>
+  <data name="InstallLocationTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
   <data name="&gt;&gt;InstallLocationTextBox.Name" xml:space="preserve">
     <value>InstallLocationTextBox</value>
   </data>
@@ -515,6 +542,93 @@
   </data>
   <data name="&gt;&gt;InstallLocationTextBox.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="StepDescriptionLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="StepDescriptionLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="StepDescriptionLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 29</value>
+  </data>
+  <data name="StepDescriptionLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 15</value>
+  </data>
+  <data name="StepDescriptionLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="StepDescriptionLabel.Text" xml:space="preserve">
+    <value>(Step Description)</value>
+  </data>
+  <data name="StepDescriptionLabel.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;StepDescriptionLabel.Name" xml:space="preserve">
+    <value>StepDescriptionLabel</value>
+  </data>
+  <data name="&gt;&gt;StepDescriptionLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;StepDescriptionLabel.Parent" xml:space="preserve">
+    <value>InstallingPage</value>
+  </data>
+  <data name="&gt;&gt;StepDescriptionLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="InstallProgressBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="InstallProgressBar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="InstallProgressBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>384, 23</value>
+  </data>
+  <data name="InstallProgressBar.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;InstallProgressBar.Name" xml:space="preserve">
+    <value>InstallProgressBar</value>
+  </data>
+  <data name="&gt;&gt;InstallProgressBar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ProgressBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;InstallProgressBar.Parent" xml:space="preserve">
+    <value>InstallingPage</value>
+  </data>
+  <data name="&gt;&gt;InstallProgressBar.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="InstallSucceededPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>547, 258</value>
+  </data>
+  <data name="InstallSucceededPage.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="InstallSucceededPage.Text" xml:space="preserve">
+    <value>Installation complete</value>
+  </data>
+  <data name="&gt;&gt;InstallSucceededPage.Name" xml:space="preserve">
+    <value>InstallSucceededPage</value>
+  </data>
+  <data name="&gt;&gt;InstallSucceededPage.Type" xml:space="preserve">
+    <value>AeroWizard.WizardPage, AeroWizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="InstallingPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>547, 258</value>
+  </data>
+  <data name="InstallingPage.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="InstallingPage.Text" xml:space="preserve">
+    <value>Now installing</value>
+  </data>
+  <data name="&gt;&gt;InstallingPage.Name" xml:space="preserve">
+    <value>InstallingPage</value>
+  </data>
+  <data name="&gt;&gt;InstallingPage.Type" xml:space="preserve">
+    <value>AeroWizard.WizardPage, AeroWizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="InstallOptionsPage.Size" type="System.Drawing.Size, System.Drawing">
     <value>547, 258</value>
@@ -559,60 +673,6 @@
     <value>IntroductionPage</value>
   </data>
   <data name="&gt;&gt;IntroductionPage.Type" xml:space="preserve">
-    <value>AeroWizard.WizardPage, AeroWizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;StepDescriptionLabel.Name" xml:space="preserve">
-    <value>StepDescriptionLabel</value>
-  </data>
-  <data name="&gt;&gt;StepDescriptionLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;StepDescriptionLabel.Parent" xml:space="preserve">
-    <value>InstallingPage</value>
-  </data>
-  <data name="&gt;&gt;StepDescriptionLabel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;InstallProgressBar.Name" xml:space="preserve">
-    <value>InstallProgressBar</value>
-  </data>
-  <data name="&gt;&gt;InstallProgressBar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ProgressBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;InstallProgressBar.Parent" xml:space="preserve">
-    <value>InstallingPage</value>
-  </data>
-  <data name="&gt;&gt;InstallProgressBar.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="InstallingPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>547, 258</value>
-  </data>
-  <data name="InstallingPage.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="InstallingPage.Text" xml:space="preserve">
-    <value>Now installing</value>
-  </data>
-  <data name="&gt;&gt;InstallingPage.Name" xml:space="preserve">
-    <value>InstallingPage</value>
-  </data>
-  <data name="&gt;&gt;InstallingPage.Type" xml:space="preserve">
-    <value>AeroWizard.WizardPage, AeroWizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="InstallSucceededPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>547, 258</value>
-  </data>
-  <data name="InstallSucceededPage.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="InstallSucceededPage.Text" xml:space="preserve">
-    <value>Installation complete</value>
-  </data>
-  <data name="&gt;&gt;InstallSucceededPage.Name" xml:space="preserve">
-    <value>InstallSucceededPage</value>
-  </data>
-  <data name="&gt;&gt;InstallSucceededPage.Type" xml:space="preserve">
     <value>AeroWizard.WizardPage, AeroWizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="WizardControl.Size" type="System.Drawing.Size, System.Drawing">
@@ -2069,110 +2129,8 @@
   <data name="&gt;&gt;WizardControl.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="ChooseInstallLocationButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="label8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
-  </data>
-  <data name="ChooseInstallLocationButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>377, 48</value>
-  </data>
-  <data name="ChooseInstallLocationButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="ChooseInstallLocationButton.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="ChooseInstallLocationButton.Text" xml:space="preserve">
-    <value>&amp;Browse...</value>
-  </data>
-  <data name="&gt;&gt;ChooseInstallLocationButton.Name" xml:space="preserve">
-    <value>ChooseInstallLocationButton</value>
-  </data>
-  <data name="&gt;&gt;ChooseInstallLocationButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ChooseInstallLocationButton.Parent" xml:space="preserve">
-    <value>InstallOptionsPage</value>
-  </data>
-  <data name="&gt;&gt;ChooseInstallLocationButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="InstallLocationTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 49</value>
-  </data>
-  <data name="InstallLocationTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>350, 23</value>
-  </data>
-  <data name="InstallLocationTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;InstallLocationTextBox.Name" xml:space="preserve">
-    <value>InstallLocationTextBox</value>
-  </data>
-  <data name="&gt;&gt;InstallLocationTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;InstallLocationTextBox.Parent" xml:space="preserve">
-    <value>InstallOptionsPage</value>
-  </data>
-  <data name="&gt;&gt;InstallLocationTextBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="StepDescriptionLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="StepDescriptionLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="StepDescriptionLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 29</value>
-  </data>
-  <data name="StepDescriptionLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 15</value>
-  </data>
-  <data name="StepDescriptionLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="StepDescriptionLabel.Text" xml:space="preserve">
-    <value>(Step Description)</value>
-  </data>
-  <data name="StepDescriptionLabel.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;StepDescriptionLabel.Name" xml:space="preserve">
-    <value>StepDescriptionLabel</value>
-  </data>
-  <data name="&gt;&gt;StepDescriptionLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;StepDescriptionLabel.Parent" xml:space="preserve">
-    <value>InstallingPage</value>
-  </data>
-  <data name="&gt;&gt;StepDescriptionLabel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="InstallProgressBar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="InstallProgressBar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="InstallProgressBar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>384, 23</value>
-  </data>
-  <data name="InstallProgressBar.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;InstallProgressBar.Name" xml:space="preserve">
-    <value>InstallProgressBar</value>
-  </data>
-  <data name="&gt;&gt;InstallProgressBar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ProgressBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;InstallProgressBar.Parent" xml:space="preserve">
-    <value>InstallingPage</value>
-  </data>
-  <data name="&gt;&gt;InstallProgressBar.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
