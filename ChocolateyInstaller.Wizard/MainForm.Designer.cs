@@ -185,6 +185,7 @@
             this.InstallingPage.Name = "InstallingPage";
             this.InstallingPage.ShowNext = false;
             resources.ApplyResources(this.InstallingPage, "InstallingPage");
+            this.InstallingPage.Initialize += new System.EventHandler<AeroWizard.WizardPageInitEventArgs>(this.InstallingPage_Initialize);
             // 
             // StepDescriptionLabel
             // 

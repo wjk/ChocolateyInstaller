@@ -9,10 +9,36 @@ namespace ChocolateyInstaller.Wizard
         [STAThread]
         static void Main(string[] args)
         {
-            if (args.Length > 0 && args[0] == "/install")
+            if (args.Length > 0 && args[0] == "install")
             {
-                AnonymousPipeClientStream pipe = (args.Length > 1) ? new AnonymousPipeClientStream(args[1]) : null;
+                string pipe_name = null;
+                string destination_directory = null;
+
+                bool skip_next = false;
+                int argc = args.Length;
+                for (int i = 1; i< argc; i++)
+                {
+                    if (skip_next)
+                    {
+                        skip_next = false;
+                        continue;
+                    }
+
+                    if (args[i] == "/destination")
+                    {
+                        destination_directory = args[i + 1];
+                        skip_next = true;
+                    }
+                    else if (args[i] == "/statuspipe")
+                    {
+                        pipe_name = args[i + 1];
+                        skip_next = true;
+                    }
+                }
+
+                AnonymousPipeClientStream pipe = (pipe_name != null) ? new AnonymousPipeClientStream(pipe_name) : null;
                 BatchInstaller installer = new BatchInstaller(pipe);
+                installer.DestinationDirectory = destination_directory;
                 installer.Run();
 
                 byte[] doneMsg = System.Text.Encoding.UTF8.GetBytes("DONE\n");

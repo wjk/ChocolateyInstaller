@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Diagnostics;
 using System.IO;
+using System.IO.Pipes;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using PSTaskDialog;
 
@@ -104,6 +107,62 @@ namespace ChocolateyInstaller.Wizard
         private void LicensesAgreedCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             LicensesPage.AllowNext = LicensesAgreedCheckBox.Checked;
+        }
+
+        private void InstallingPage_Initialize(object sender, AeroWizard.WizardPageInitEventArgs e)
+        {
+            AnonymousPipeServerStream pipe = new AnonymousPipeServerStream(PipeDirection.Out);
+
+            ProcessStartInfo processInfo = new ProcessStartInfo(System.Reflection.Assembly.GetEntryAssembly().Location, $"install /destination \"{InstallRoot}\" /statuspipe \"{pipe.GetClientHandleAsString()}\"");
+            processInfo.UseShellExecute = true;
+            if (WindowsVersion.IsWindowsVista()) processInfo.Verb = "runas";
+
+            Process child = Process.Start(processInfo);
+
+            Thread thr = new Thread(PipeReadThread);
+            thr.Start(pipe);
+        }
+
+        private void PipeReadThread(object param)
+        {
+            Stream stream = (Stream)param;
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                bool continueLoop = true;
+                while (continueLoop)
+                {
+                    string msg = reader.ReadLine();
+                    if (msg == "DONE") continueLoop = false;
+
+                    Action invoke = () => ProcessIPCMessage(msg);
+                    BeginInvoke(invoke);
+                }
+            }
+        }
+
+        private void ProcessIPCMessage(string msg)
+        {
+            string[] words = msg.Split(',');
+            if (words[0] == "DONE")
+            {
+
+            }
+            else if (words[0] == "STEP-COUNT")
+            {
+                InstallProgressBar.Maximum = int.Parse(words[1]);
+                InstallProgressBar.Value = 0;
+            }
+            else if (words[0] == "STEP")
+            {
+                InstallProgressBar.Value = int.Parse(words[1]) + 1;
+                StepDescriptionLabel.Text = words[2];
+                StepDescriptionLabel.Visible = true;
+            }
+            else if (words[0] == "ERROR_STRING")
+            {
+                StepDescriptionLabel.Text = $"Subprocess reported error: {words[1]}";
+                StepDescriptionLabel.Visible = true;
+            }
         }
     }
 }

@@ -14,6 +14,7 @@ namespace ChocolateyInstaller.Wizard
 
         private readonly List<Tuple<string, Func<bool>>> mSteps;
         public string LogPath { get; set; } = Path.Combine(Path.GetDirectoryName(typeof(BatchInstaller).Assembly.Location), "install.log");
+        public string DestinationDirectory { get; set; } = null;
 
         public BatchInstaller(Stream pipe)
         {
@@ -52,43 +53,40 @@ namespace ChocolateyInstaller.Wizard
             string myDir = Path.GetDirectoryName(typeof(BatchInstaller).Assembly.Location);
             string chocoInstallModulePath = Path.Combine(myDir, "choco_nupkg", "tools", "chocolateysetup.psm1");
 
-            string dest = Environment.GetEnvironmentVariable("CHOCO_DESTINATION");
-            if (dest == null)
+            if (DestinationDirectory == null)
             {
                 WriteLine("ERROR_STRING,CHOCO_DESTINATION variable not set");
                 return false;
             }
 
             return RunScript($@"
-New-Object -Type Directory `""{dest}`"" | Out-Null
+New-Object -Type Directory `""{DestinationDirectory}`"" -ErrorAction SilentlyContinue | Out-Null
 Import-Module `""{chocoInstallModulePath}`""
-Initialize-Chocolatey `""{dest}`""
+Initialize-Chocolatey `""{DestinationDirectory}`""
 ");
         }
 
         private bool DoUpgradeChocolatey()
         {
-            string dest = Environment.GetEnvironmentVariable("CHOCO_DESTINATION");
-            if (dest == null)
+            if (DestinationDirectory == null)
             {
                 WriteLine("ERROR_STRING,CHOCO_DESTINATION variable not set");
                 return false;
             }
 
-            string chocoPath = Path.Combine(dest, "choco.exe");
+            string chocoPath = Path.Combine(DestinationDirectory, "choco.exe");
             return RunExe(chocoPath, "upgrade", "chocolatey", "-y");
         }
 
         private bool DoInstallGUI()
         {
-            string dest = Environment.GetEnvironmentVariable("CHOCO_DESTINATION");
-            if (dest == null)
+            if (DestinationDirectory == null)
             {
                 WriteLine("ERROR_STRING,CHOCO_DESTINATION variable not set");
                 return false;
             }
 
-            string chocoPath = Path.Combine(dest, "choco.exe");
+            string chocoPath = Path.Combine(DestinationDirectory, "choco.exe");
             return RunExe(chocoPath, "install", "chocolateygui", "-y");
         }
 
