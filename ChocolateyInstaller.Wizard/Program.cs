@@ -36,7 +36,7 @@ namespace ChocolateyInstaller.Wizard
                     }
                 }
 
-                AnonymousPipeClientStream pipe = (pipe_name != null) ? new AnonymousPipeClientStream(pipe_name) : null;
+                AnonymousPipeClientStream pipe = (pipe_name != null) ? new AnonymousPipeClientStream(PipeDirection.Out, pipe_name) : null;
                 BatchInstaller installer = new BatchInstaller(pipe);
                 installer.DestinationDirectory = destination_directory;
                 installer.Run();

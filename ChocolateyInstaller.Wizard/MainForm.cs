@@ -111,7 +111,7 @@ namespace ChocolateyInstaller.Wizard
 
         private void InstallingPage_Initialize(object sender, AeroWizard.WizardPageInitEventArgs e)
         {
-            AnonymousPipeServerStream pipe = new AnonymousPipeServerStream(PipeDirection.Out);
+            AnonymousPipeServerStream pipe = new AnonymousPipeServerStream(PipeDirection.In);
 
             ProcessStartInfo processInfo = new ProcessStartInfo(System.Reflection.Assembly.GetEntryAssembly().Location, $"install /destination \"{InstallRoot}\" /statuspipe \"{pipe.GetClientHandleAsString()}\"");
             processInfo.UseShellExecute = true;
