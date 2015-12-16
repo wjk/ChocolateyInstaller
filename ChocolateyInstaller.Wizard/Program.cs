@@ -42,10 +42,6 @@ namespace ChocolateyInstaller.Wizard
                     BatchInstaller installer = new BatchInstaller(pipe);
                     installer.DestinationDirectory = destination_directory;
 
-#if DEBUG
-                    MessageBox.Show("Pausing for debugger, please attach now.", "Chocolatey Installer", MessageBoxButtons.OK, MessageBoxIcon.Information);
-#endif
-
                     pipe.Connect();
                     installer.Run();
 
