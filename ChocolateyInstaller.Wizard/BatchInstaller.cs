@@ -60,9 +60,9 @@ namespace ChocolateyInstaller.Wizard
             }
 
             return RunScript($@"
-New-Object -Type Directory `""{DestinationDirectory}`"" -ErrorAction SilentlyContinue | Out-Null
-Import-Module `""{chocoInstallModulePath}`""
-Initialize-Chocolatey `""{DestinationDirectory}`""
+New-Item -Type Directory ""{DestinationDirectory}"" -ErrorAction SilentlyContinue | Out-Null
+Import-Module ""{chocoInstallModulePath}""
+Initialize-Chocolatey -chocolateyPath ""{DestinationDirectory}""
 ");
         }
 
@@ -100,10 +100,14 @@ Initialize-Chocolatey `""{DestinationDirectory}`""
         private bool RunScript(string script)
         {
             string path = Path.GetTempFileName();
-            File.WriteAllText(path, script);
 
-            bool success = RunExe(PowerShellPath, "-ExecutionPolicy", "-Bypass", "&", path);
+            // PowerShell scripts must have a .ps1 extension, or else PowerShell.exe won't run them.
+            string fixedPath = Path.ChangeExtension(path, "ps1");
+            File.WriteAllText(fixedPath, script);
+
+            bool success = RunExe(PowerShellPath, "-ExecutionPolicy", "Bypass", "-Command", fixedPath);
             File.Delete(path);
+            File.Delete(fixedPath);
             return success;
         }
 
