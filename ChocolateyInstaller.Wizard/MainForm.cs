@@ -31,6 +31,10 @@ namespace ChocolateyInstaller.Wizard
             }
         }
 
+        // If this property is true, then the installer window will not close willingly.
+        // This is done to avoid interrupting the installation process.
+        private bool LockInstaller { get; set; }
+
         #endregion
 
         public MainForm()
@@ -119,6 +123,7 @@ namespace ChocolateyInstaller.Wizard
             if (WindowsVersion.IsWindowsVista()) processInfo.Verb = "runas";
 
             Process child = Process.Start(processInfo);
+            LockInstaller = true;
 
             Thread thr = new Thread(PipeReadThread);
             thr.Start(pipe);
@@ -156,6 +161,7 @@ namespace ChocolateyInstaller.Wizard
                 StepDescriptionLabel.Text = "Installation complete";
                 InstallingPage.AllowNext = true;
                 WizardControl.NextPage();
+                LockInstaller = false;
             }
             else if (words[0] == "STEP-COUNT")
             {
@@ -208,6 +214,15 @@ namespace ChocolateyInstaller.Wizard
             td.Show(this);
 
             Application.Exit();
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (LockInstaller)
+            {
+                System.Media.SystemSounds.Beep.Play();
+                e.Cancel = true;
+            }
         }
     }
 }
