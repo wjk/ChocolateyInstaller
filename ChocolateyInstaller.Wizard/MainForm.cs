@@ -136,13 +136,10 @@ namespace ChocolateyInstaller.Wizard
 
             using (StreamReader reader = new StreamReader(stream))
             {
-                bool continueLoop = true;
-                while (continueLoop)
+                while (true)
                 {
                     string msg = reader.ReadLine();
                     if (msg == null) break; // because null indicates end-of-stream
-
-                    if (msg == "DONE") continueLoop = false;
 
                     Action invoke = () => ProcessIPCMessage(msg);
                     BeginInvoke(invoke);
