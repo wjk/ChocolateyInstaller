@@ -123,7 +123,7 @@ namespace ChocolateyInstaller.Wizard
             if (WindowsVersion.IsWindowsVista()) processInfo.Verb = "runas";
 
             Process child = Process.Start(processInfo);
-            LockInstaller = true;
+            InstallProgressBar.Style = ProgressBarStyle.Marquee;
 
             Thread thr = new Thread(PipeReadThread);
             thr.Start(pipe);
@@ -162,6 +162,8 @@ namespace ChocolateyInstaller.Wizard
             }
             else if (words[0] == "STEP-COUNT")
             {
+                LockInstaller = true;
+                InstallProgressBar.Style = ProgressBarStyle.Continuous;
                 InstallProgressBar.Maximum = int.Parse(words[1]) + 1;
                 InstallProgressBar.Value = 0;
             }
