@@ -115,6 +115,8 @@ namespace ChocolateyInstaller.Wizard
 
         private void InstallingPage_Initialize(object sender, AeroWizard.WizardPageInitEventArgs e)
         {
+            InstallProgressBar.Style = ProgressBarStyle.Marquee;
+
             const string pipeName = "Chocolatey Installer\\User Interface Progress";
             NamedPipeServerStream pipe = new NamedPipeServerStream(pipeName, PipeDirection.In);
 
@@ -122,8 +124,16 @@ namespace ChocolateyInstaller.Wizard
             processInfo.UseShellExecute = true;
             if (WindowsVersion.IsWindowsVista()) processInfo.Verb = "runas";
 
-            Process child = Process.Start(processInfo);
-            InstallProgressBar.Style = ProgressBarStyle.Marquee;
+            try
+            {
+                Process child = Process.Start(processInfo);
+            }
+            catch (Win32Exception)
+            {
+                // This can be raised if the user clicks Cancel in the UAC dialog.
+                pipe.Dispose();
+                return;
+            }
 
             Thread thr = new Thread(PipeReadThread);
             thr.Start(pipe);
