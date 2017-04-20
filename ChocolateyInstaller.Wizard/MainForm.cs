@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using PSTaskDialog;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace ChocolateyInstaller.Wizard
 {
@@ -91,13 +91,13 @@ namespace ChocolateyInstaller.Wizard
         {
             if (Directory.Exists(InstallRoot) && Directory.GetFileSystemEntries(InstallRoot).Length != 0)
             {
-                VistaTaskDialog td = new VistaTaskDialog();
-                td.WindowTitle = "Chocolatey Installer";
-                td.MainInstruction = "The selected directory already contains files.";
-                td.Content = "This program will not install Chocolatey into a folder that contains files. Please choose another location.";
-                td.CommonButtons = VistaTaskDialogCommonButtons.Ok;
-                td.AllowDialogCancellation = true;
-                td.Show(this);
+                TaskDialog td = new TaskDialog();
+                td.Caption = "Chocolatey Installer";
+                td.InstructionText = "The selected directory already contains files.";
+                td.Text = "This program will not install Chocolatey into a folder that contains files. Please choose another location.";
+                td.StandardButtons = TaskDialogStandardButtons.Ok;
+                td.Cancelable = true;
+                td.Show();
                 e.Cancel = true;
             }
         }
@@ -213,14 +213,14 @@ namespace ChocolateyInstaller.Wizard
 
         private void ReportInstallationError(string content)
         {
-            VistaTaskDialog td = new VistaTaskDialog();
-            td.WindowTitle = "Chocolatey Installer";
-            td.MainInstruction = "Chocolatey failed to install. You may need to clean up your system manually.";
-            td.Content = content;
-            td.MainIcon = VistaTaskDialogIcon.Error;
-            td.CommonButtons = VistaTaskDialogCommonButtons.Close;
-            td.AllowDialogCancellation = true;
-            td.Show(this);
+            TaskDialog td = new TaskDialog();
+            td.Caption = "Chocolatey Installer";
+            td.InstructionText = "Chocolatey failed to install. You may need to clean up your system manually.";
+            td.Text = content;
+            td.Icon = TaskDialogStandardIcon.Error;
+            td.StandardButtons = TaskDialogStandardButtons.Close;
+            td.Cancelable = true;
+            td.Show();
 
             Application.Exit();
         }
