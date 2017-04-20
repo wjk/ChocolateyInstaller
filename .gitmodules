@@ -1,0 +1,3 @@
+[submodule "external/WindowsAPICodePack"]
+	path = external/WindowsAPICodePack
+	url = git@github.com:SunburstApps/WindowsAPICodePack
