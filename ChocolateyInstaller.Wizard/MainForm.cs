@@ -135,6 +135,7 @@ namespace ChocolateyInstaller.Wizard
             {
                 // This can be raised if the user clicks Cancel in the UAC dialog.
                 pipe.Dispose();
+                WizardControl.PreviousPage();
                 return;
             }
 
