@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using Microsoft.WindowsAPICodePack.Shell;
 
 namespace ChocolateyInstaller.Wizard
 {
@@ -78,13 +79,15 @@ namespace ChocolateyInstaller.Wizard
 
         private void ChooseInstallLocationButton_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog dlg = new FolderBrowserDialog();
-            dlg.Description = "Select a folder to install Chocolatey into.";
-            dlg.ShowNewFolderButton = true;
-            dlg.RootFolder = Environment.SpecialFolder.MyComputer;
+            CommonOpenFileDialog dlg = new CommonOpenFileDialog();
+            dlg.DefaultDirectory = KnownFolders.ProgramData.Path;
+            dlg.IsFolderPicker = true;
+            dlg.Title = "Select a folder to install Chocolatey into";
+            dlg.Multiselect = false;
+            dlg.AllowNonFileSystemItems = false;
+            var result = dlg.ShowDialog(Handle);
 
-            var result = dlg.ShowDialog(this);
-            if (result == DialogResult.OK) InstallRoot = dlg.SelectedPath;
+            if (result == CommonFileDialogResult.Ok) InstallRoot = dlg.FileAsShellObject.ParsingName;
         }
 
         private void InstallOptionsPage_Commit(object sender, AeroWizard.WizardPageConfirmEventArgs e)
