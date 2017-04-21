@@ -32,7 +32,7 @@ Task build -Depends WriteRCFile
 Task MkDirs -RequiredVariables ProjectDir {
 	$dir = "$($ProjectDir)\generated-archive"
 	if (-not [system.io.directory]::Exists($dir)) {
-		New-Item -ItemType Directory $dir
+		New-Item -ItemType Directory $dir | Out-Null
 	}
 }
 
